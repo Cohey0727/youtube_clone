@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxSizing: "border-box",
     backgroundColor: theme.palette.grey[50],
     paddingLeft: theme.spacing(7),
+    '-webkit-overflow-scrolling': 'touch',
     [theme.breakpoints.up("sm")]: {
       paddingLeft: theme.spacing(9),
     },
@@ -51,6 +52,9 @@ function App() {
 
   return (
     <div className={classes.root}>
+      <div className={classes.topBarContainer}>
+        <TopBar />
+      </div>
       <div className={classes.bodyContainer}>
         <div className={classes.sideBarContainer}>
           <SideBar />
@@ -58,9 +62,6 @@ function App() {
         <PerfectScrollbar className={classes.mainContainer}>
           <Main />
         </PerfectScrollbar>
-      </div>
-      <div className={classes.topBarContainer}>
-        <TopBar />
       </div>
     </div>
   );
