@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       display: "none",
+      ...theme.typography.h6,
+      fontSize: "1.75rem",
       [theme.breakpoints.up("sm")]: {
         display: "block",
       },
@@ -188,7 +190,7 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant="h2" noWrap>
             YouTube
           </Typography>
           <div className={classes.search}>

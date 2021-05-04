@@ -3,6 +3,8 @@ import TopBar from "./components/TopBar";
 import SideBar from "./components/SideBar";
 import { topBarHeight } from "./components/TopBar/TopBar";
 import Main from "./pages/Main";
+import "react-perfect-scrollbar/dist/css/styles.css";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -12,6 +14,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   topBarContainer: {
     position: "fixed",
     width: "100vw",
+    zIndex: 1,
+    top: 0,
+    right: 0,
+    left: 0,
   },
   bodyContainer: {
     height: "100vh",
@@ -26,6 +32,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   sideBarContainer: {
     position: "fixed",
     height: "100%",
+    zIndex: 1,
   },
   mainContainer: {
     height: "100%",
@@ -44,16 +51,16 @@ function App() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.topBarContainer}>
-        <TopBar />
-      </div>
       <div className={classes.bodyContainer}>
         <div className={classes.sideBarContainer}>
           <SideBar />
         </div>
-        <div className={classes.mainContainer}>
+        <PerfectScrollbar className={classes.mainContainer}>
           <Main />
-        </div>
+        </PerfectScrollbar>
+      </div>
+      <div className={classes.topBarContainer}>
+        <TopBar />
       </div>
     </div>
   );

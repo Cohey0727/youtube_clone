@@ -1,6 +1,9 @@
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Movie } from "../../types";
+import { Typography } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import { LineWeight } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -8,10 +11,10 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       width: "100%",
-      paddingTop: "80%",
+      paddingTop: "92%",
       position: "relative",
     },
-    container: {
+    contentContainer: {
       position: "absolute",
       height: "100%",
       top: 0,
@@ -19,18 +22,34 @@ const useStyles = makeStyles((theme: Theme) =>
       right: 0,
     },
     thumbnailContainer: {
-      height: "80%",
+      height: "72%",
     },
     thumbnail: {
       width: "100%",
       height: "100%",
       objectFit: "cover",
     },
-    contentContainer: {},
+    discriptionContainer: {
+      padding: theme.spacing(1, 0),
+      display: "flex",
+    },
     avatarContainer: {},
-    textContainer: {},
+    textContainer: {
+      margin: theme.spacing(0, 2),
+    },
     titleContainer: {},
-    infoContainer: {},
+    title: {
+      fontSize: "1.15rem",
+      lineWHeight: 1.15,
+    },
+    infoContainer: {
+      margin: theme.spacing(0.5, 0, 0),
+    },
+    info: {
+      ...theme.typography.body2,
+      lineHeight: 1.25,
+      color: theme.palette.grey[700]
+    },
   })
 );
 
@@ -44,21 +63,29 @@ export default function MovieItem(props: Props) {
 
   return (
     <div className={classes.root}>
-      <div className={classes.container}>
+      <div className={classes.contentContainer}>
         <div className={classes.thumbnailContainer}>
           <img
             className={classes.thumbnail}
             src={"https://source.unsplash.com/random"}
-            alt="画像"
+            alt="thumbnail"
           />
         </div>
-        <div className={classes.contentContainer}>
-          <div className={classes.avatarContainer}></div>
+        <div className={classes.discriptionContainer}>
+          <div className={classes.avatarContainer}>
+            <Avatar alt={movie.author} src={movie.author} />
+          </div>
           <div className={classes.textContainer}>
-            <div className={classes.titleContainer}>{movie.title}</div>
+            <div className={classes.titleContainer}>
+              <Typography variant="h6" className={classes.title}>
+                {movie.title}
+              </Typography>
+            </div>
             <div className={classes.infoContainer}>
-              {movie.count}
-              {movie.date}
+              <Typography className={classes.info}>{movie.author}</Typography>
+              <Typography className={classes.info}>
+                {movie.count}回視聴・{movie.date}
+              </Typography>
             </div>
           </div>
         </div>

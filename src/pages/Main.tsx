@@ -17,13 +17,16 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Main() {
   const classes = useStyles();
 
-  const movies = useMemo(() => movieData as Movie[], []);
+  const movies = useMemo(
+    () => [...movieData, ...movieData, ...movieData] as Movie[],
+    []
+  );
 
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
-        {movies.map((movie) => (
-          <Grid key={movie.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
+        {movies.map((movie, index) => (
+          <Grid key={index} item xs={12} sm={6} md={4} lg={3} xl={2}>
             <MovieItem movie={movie} />
           </Grid>
         ))}
